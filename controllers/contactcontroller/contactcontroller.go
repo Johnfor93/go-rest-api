@@ -8,15 +8,35 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/gin-gonic/gin"
+
+	"fmt"
+	"strconv"
 )
 
 func ShowAll(c *gin.Context) {
 
-	// query := c.Request.URL.Query()
+	query := c.Request.URL.Query()
+	limit := 100
+	offset:= 0
 
 	var contacts []models.Contact
 
-	models.DB.Find(&contacts)
+	fmt.Printf("%T %v", query.Get("offset"), query.Get("offset"))
+
+	if query["offset"] != nil{
+		offset, _ = strconv.Atoi(query.Get("offset"))
+	}
+
+	if query["limit"] != nil{
+		limit, _ = strconv.Atoi(query.Get("limit"))
+	}
+
+	if query["filter"] != nil{
+		fmt.Printf("masuk sini")
+		models.DB.Where("gender = ?", query.Get("filter")).Limit(limit).Offset(offset).Find(&contacts)
+	} else {
+		models.DB.Limit(limit).Offset(offset).Find(&contacts)
+	}
 
 	c.JSON(http.StatusOK, gin.H{"contacts": contacts})
 
