@@ -11,10 +11,13 @@ import (
 
 	"fmt"
 	"strconv"
+	"os"
 )
 
 func ShowAll(c *gin.Context) {
 
+	fmt.Printf("%v", os.Getenv("database_uri"))
+	
 	query := c.Request.URL.Query()
 	limit := 100
 	offset:= 0

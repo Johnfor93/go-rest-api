@@ -2,6 +2,12 @@
 
 Aplikasi ini merupakan aplikasi dengan RESTful API untuk data kontak. Aplikasi ini dibangun dengan menggunakan bahasa Golang serta database menggunakan MYSQL. Dengan aplikasi ini, URI yang bisa diakses yaitu
 
+Database URL disimpan pada file .env dengan nama variabel database_uri
+
+```
+    database_uri=username:password@tcp(ip:port)/databaseName?parseTime=true
+```
+
 | No  | HTTP METHOD | URI              | Deskripsi                                                                         |
 | --- | ----------- | ---------------- | --------------------------------------------------------------------------------- |
 | 1   | GET         | /api/contacts    | Menampilkan semua data yang ada di database.                                      |
@@ -43,6 +49,6 @@ URI ini akan menambahkan data ke dalam database. Data yang akan ditambahkan akan
 
 URI ini akan mengubah data database sesuai dengan id yang ada pada paramter URI. Data yang akan diupdate akan dimasukkan kedalam body request seperti yang telah dijelaskan pada point ke 3.
 
-## 4. DELETE /api/contact/
+## 5. DELETE /api/contact/
 
 URI ini akan menghapus data dari sebuah database sesuai dengan id yang dikirimkan melalui body request.
