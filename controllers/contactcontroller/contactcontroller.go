@@ -72,7 +72,7 @@ func Insert(c *gin.Context) {
 	models.DB.Create(&contact)
 
 	// fmt.Printf("%v\n", contact)
-	c.JSON(http.StatusOK, gin.H{"contact": contact})
+	c.JSON(http.StatusCreated, gin.H{"message": "Data berhasil ditambahkan","contact": contact})
 }
 
 func Update(c *gin.Context) {
@@ -89,7 +89,7 @@ func Update(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Data berhasil diperbarui"})
+	c.JSON(http.StatusOK, gin.H{"message": "Data berhasil diperbarui", "contact" : contact})
 
 }
 
@@ -112,5 +112,5 @@ func Delete(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Data berhasil dihapus"})
+	c.JSON(http.StatusNoContent, gin.H{"message": "Data berhasil dihapus"})
 }
